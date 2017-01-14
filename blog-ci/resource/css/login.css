@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+form{
+    width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
