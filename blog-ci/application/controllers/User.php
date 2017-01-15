@@ -9,16 +9,25 @@ class User extends CI_Controller
     }
 
     public function login(){
-        $this->load->view('login');
+        $arr['a'] = $this->uri->segment(3);
+        $arr['b'] = $this->uri->segment(4);
+        $this->load->view('login',$arr);
     }
     public function do_login(){
         $name = $this->input->post('user');
         $pass = $this->input->post('pass');
+        $a = $this->input->post('a');
+        $b = $this->input->post('b');
+        if($a){
+            $uri = $a."/".$b;
+        }else{
+            $uri = site_url('Blog/index');
+        }
         $result = $this->User_model->check_login($name,$pass);
         if($result){
             $this->session->uid = $result->uid;
             $this->session->uname = $result->uname;
-            echo "<script>location='".site_url('Blog/index')."'</script>";
+            redirect($uri);
         }else{
             $this->login();
         }
@@ -45,5 +54,12 @@ class User extends CI_Controller
         }else{
             echo "error";
         }
+    }
+    public function unlogin(){
+        unset(
+            $_SESSION['uid'],
+            $_SESSION['uname']
+        );
+        redirect('Blog/index');
     }
 }

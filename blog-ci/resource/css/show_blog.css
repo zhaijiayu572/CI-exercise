@@ -1,0 +1,23 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#content{
+    width: 800px;
+    float: left;
+}
+#content p{
+    margin: 20px;
+}
+#show_comment{
+    border: 1px solid;
+    width: 600px;
+    float: left;
+}
+#show_comment p{
+    margin: 10px;
+}
+#do_comment{
+    width: 400px;
+    float: right;
+}

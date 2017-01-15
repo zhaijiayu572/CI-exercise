@@ -1,4 +1,14 @@
+#blog-content{
+    width: 500px;
+    float: left;
+}
 .blog{
     margin-top: 50px;
-    width: 800px;
+
+}
+#catalog-box{
+    width: 400px;
+    float: right;
+    height: 300px;
+    border: 1px solid;
 }

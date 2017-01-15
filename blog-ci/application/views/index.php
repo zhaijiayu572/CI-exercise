@@ -11,16 +11,21 @@
     if(isset($_SESSION['uid'])){
         $uid = $this->session->uid;
         $uname = $this->session->uname;
+
         if(isset($result)){
             ?>
             <div id="wel-box">
                 <p>欢迎,<?php echo $uname?></p>
+                <a href="index.php/Blog/add_blog">增加文章</a>
+                <a href="index.php/Sixin/show_letter">收件箱(未读<?php echo $unread_num?>)</a>
+                <a href="index.php/User/unlogin">注销</a>
             </div>
+            <div id="blog-content">
             <?php
             foreach ($result as $value){
                 ?>
                 <div class="blog">
-                    <h3><a href="#"><?php echo $value->title?></a></h3>
+                    <h3><a href="index.php/Blog/show_blog/<?php echo $value->wid?>"><?php echo $value->title?></a></h3>
                     <span>作者:<?php echo $value->uname?></span><span>时间:<?php echo $value->time?></span>
                     <p><?php echo $value->content?></p>
                     <hr>
@@ -29,6 +34,15 @@
 
 <?php
             }
+            echo $this->pagination->create_links();
+            echo "</div>";
+            echo "<div id='catalog-box'>";
+            foreach ($catalog as $value){
+                ?>
+                <a href="index.php/Blog/screen/<?php echo $value->cid?>"><?php echo $value->cname?></a>
+                <?php
+            }
+            echo "</div>";
         }else{
             echo "error";
             echo "<script>location='".site_url('User/index')."'</script>";
