@@ -28,4 +28,8 @@ class Catalog_model extends CI_Model
         return $query;
 
     }
+    public function delete_catalog($cid){
+        $query = $this->db->delete('t_blog_catalogs',array('CATALOG_ID'=>$cid));
+        return $query;
+    }
 }

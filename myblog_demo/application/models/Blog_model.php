@@ -11,4 +11,17 @@ class Blog_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function add_blog($cid,$uid,$title,$content,$type){
+        $now = date("Y-m-d H:i:s");
+        $arr = array(
+            'CATALOG_ID'=>$cid,
+            'WRITER'=>$uid,
+            'TITLE'=>$title,
+            'CONTENT'=>$content,
+            'ADD_TIME'=>$now,
+            'IS_YOURS'=>$type
+        );
+        $query = $this->db->insert('t_blogs',$arr);
+        return $query;
+    }
 }

@@ -113,10 +113,10 @@
                             <tr id="catalog_<?php echo $value->CATALOG_ID?>">
                                 <td class="idx"><?php echo $value->CATALOG_ID?></td>
                                 <td class="name"><a href="Catalog/editcatalog?cid=<?php echo $value->CATALOG_ID?>&cname=<?php echo $value->NAME?>" title="点击修改博客分类"><?php echo $value->NAME?></a></td>
-                                <td class="num"><?php echo $value->BLOG_ID?></td>
+                                <td class="num"><?php echo $value->BLOG_COUNT?></td>
                                 <td class="opts">
-                                    <a href="editCatalog.php" title="点击修改博客分类">修改</a>
-                                    <a href="#" onclick="return delete_catalog(154693,92334);">删除</a>
+                                    <a href="Catalog/editcatalog?cid=<?php echo $value->CATALOG_ID?>&cname=<?php echo $value->NAME?>" title="点击修改博客分类">修改</a>
+                                    <a href="Catalog/del_catalog?cid=<?php echo $value->CATALOG_ID?>" >删除</a>
                                 </td>
                             </tr>
                             <?php }?>

@@ -88,7 +88,7 @@
             </div>
             <div id="AdminContent">
                 <div class="MainForm">
-                    <form id="BlogForm" action="/action/blog/save?user=${g_user.id}" method="POST">
+                    <form id="BlogForm" action="Blog/do_add_blog" method="POST">
                         <input id="hdn_blog_id" name="draft" value="0" type="hidden">
                         <table>
                             <tbody>
@@ -191,149 +191,149 @@
 
                     <!--
 
-                    $(document).ready(function () {
-
-                        KE.lang['code'] = "插入程序代码或脚本";
-
-                        KE.plugin['code'] = {
-
-                            click: function (id) {
-
-                                KE.util.selection(id);
-
-                                var dialog = new KE.dialog({
-
-                                    id: id,
-
-                                    cmd: 'code',
-
-                                    file: 'code/insert_code.html',
-
-                                    width: 530,
-
-                                    height: 300,
-
-                                    title: KE.lang['code'],
-
-                                    yesButton: KE.lang['yes'],
-
-                                    noButton: KE.lang['no']
-
-                                });
-
-                                dialog.show();
-
-                            },
-
-                            check: function (id) {
-
-                                var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
-
-                                var lang = KE.$('ic_lang', dialogDoc).value;
-
-                                var source = KE.$('ic_source', dialogDoc).value;
-
-                                if (lang == '') {
-
-                                    alert('编程语言必须选择');
-
-                                    return false;
-
-                                }
-
-                                if (source == '') {
-
-                                    alert('请输入程序代码或者脚本');
-
-                                    return false;
-
-                                }
-
-                                return true;
-
-                            },
-
-                            exec: function (id) {
-
-                                KE.util.select(id);
-
-                                var iframeDoc = KE.g[id].iframeDoc;
-
-                                var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
-
-                                if (!this.check(id)) return false;
-
-                                var lang = KE.$('ic_lang', dialogDoc).value;
-
-                                var source = KE.$('ic_source', dialogDoc).value;
-
-                                this.insert(id, lang, source);
-
-                            },
-
-                            insert: function (id, lang, source) {
-
-                                var html = '<pre class="brush:' + lang + '; toolbar: true; auto-links: false;">';
-
-                                html += html_encode(source);
-
-                                html += '</pre>';
-
-                                KE.util.insertHtml(id, html);
-
-                                KE.layout.hide(id);
-
-                                KE.util.focus(id);
-
-                            }
-
-                        };
-
-                    });
-
-                    //-->
-
-                </script>
-
-                <script type='text/javascript'>
-
-                    <!--
-
-                    $(document).ready(function () {
-
-                        KE.show({
-
-                            id: 'ta_blog_content',
-
-                            resizeMode: 1,
-
-                            shadowMode: false,
-
-                            allowPreviewEmoticons: false,
-
-                            allowUpload: true,
-
-                            syncType: 'auto',
-
-                            urlType: 'domain',
-
-                            cssPath: 'css/ke-oschina.css',
-
-                            imageUploadJson: '/action/blog/upload_img',
-
-                            items: ['bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|', 'textcolor', 'bgcolor',
-
-                                'title', 'fontname', 'fontsize', '|',
-
-                                'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|',
-
-                                'code', 'image', 'flash', 'emoticons', 'link', 'unlink', '|', 'selectall', 'source', 'about'
-
-                            ]
-
-                        });
-
-                    });
+//                    $(document).ready(function () {
+//
+//                        KE.lang['code'] = "插入程序代码或脚本";
+//
+//                        KE.plugin['code'] = {
+//
+//                            click: function (id) {
+//
+//                                KE.util.selection(id);
+//
+//                                var dialog = new KE.dialog({
+//
+//                                    id: id,
+//
+//                                    cmd: 'code',
+//
+//                                    file: 'code/insert_code.html',
+//
+//                                    width: 530,
+//
+//                                    height: 300,
+//
+//                                    title: KE.lang['code'],
+//
+//                                    yesButton: KE.lang['yes'],
+//
+//                                    noButton: KE.lang['no']
+//
+//                                });
+//
+//                                dialog.show();
+//
+//                            },
+//
+//                            check: function (id) {
+//
+//                                var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+//
+//                                var lang = KE.$('ic_lang', dialogDoc).value;
+//
+//                                var source = KE.$('ic_source', dialogDoc).value;
+//
+//                                if (lang == '') {
+//
+//                                    alert('编程语言必须选择');
+//
+//                                    return false;
+//
+//                                }
+//
+//                                if (source == '') {
+//
+//                                    alert('请输入程序代码或者脚本');
+//
+//                                    return false;
+//
+//                                }
+//
+//                                return true;
+//
+//                            },
+//
+//                            exec: function (id) {
+//
+//                                KE.util.select(id);
+//
+//                                var iframeDoc = KE.g[id].iframeDoc;
+//
+//                                var dialogDoc = KE.util.getIframeDoc(KE.g[id].dialog);
+//
+//                                if (!this.check(id)) return false;
+//
+//                                var lang = KE.$('ic_lang', dialogDoc).value;
+//
+//                                var source = KE.$('ic_source', dialogDoc).value;
+//
+//                                this.insert(id, lang, source);
+//
+//                            },
+//
+//                            insert: function (id, lang, source) {
+//
+//                                var html = '<pre class="brush:' + lang + '; toolbar: true; auto-links: false;">';
+//
+//                                html += html_encode(source);
+//
+//                                html += '</pre>';
+//
+//                                KE.util.insertHtml(id, html);
+//
+//                                KE.layout.hide(id);
+//
+//                                KE.util.focus(id);
+//
+//                            }
+//
+//                        };
+//
+//                    });
+//
+//                    //-->
+//
+//                </script>
+//
+//                <script type='text/javascript'>
+//
+//                    <!--
+//
+//                    $(document).ready(function () {
+//
+//                        KE.show({
+//
+//                            id: 'ta_blog_content',
+//
+//                            resizeMode: 1,
+//
+//                            shadowMode: false,
+//
+//                            allowPreviewEmoticons: false,
+//
+//                            allowUpload: true,
+//
+//                            syncType: 'auto',
+//
+//                            urlType: 'domain',
+//
+//                            cssPath: 'css/ke-oschina.css',
+//
+//                            imageUploadJson: '/action/blog/upload_img',
+//
+//                            items: ['bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|', 'textcolor', 'bgcolor',
+//
+//                                'title', 'fontname', 'fontsize', '|',
+//
+//                                'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', '|',
+//
+//                                'code', 'image', 'flash', 'emoticons', 'link', 'unlink', '|', 'selectall', 'source', 'about'
+//
+//                            ]
+//
+//                        });
+//
+//                    });
 
                     //-->
 

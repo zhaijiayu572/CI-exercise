@@ -24,4 +24,19 @@ class Blog extends CI_Controller
         $arr['catalog'] = $result;
         $this->load->view('newBlog',$arr);
     }
+    public function do_add_blog(){
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
+        $catalog = $this->input->post('catalog');
+        $type = $this->input->post('type');
+        $type==1?$type="原创":$type="转帖";
+        $uid = $this->session->uid;
+        $rs = $this->Blog_model->add_blog($catalog,$uid,$title,$content,$type);
+        if($rs){
+            redirect('Blog/index');
+        }else{
+            echo "<script>alert('错误')</script>";
+            echo "<script>location='".site_url('Blog/index')."'</script>>";
+        }
+    }
 }

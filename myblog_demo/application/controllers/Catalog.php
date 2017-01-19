@@ -9,7 +9,7 @@ class Catalog extends CI_Controller
         $this->load->model("Catalog_model");
     }
     public function add_catalog(){
-        $result = $this->Catalog_model->get_all();
+        $result = $this->Catalog_model->get_all_catalog();
         $arr['catalog'] = $result;
         $this->load->view("blogCatalogs",$arr);
     }
@@ -30,7 +30,7 @@ class Catalog extends CI_Controller
         $cid = $this->input->get('cid');
         $arr['cid'] = $cid;
         $arr['cname'] = $cname;
-        $result = $this->Catalog_model->get_all();
+        $result = $this->Catalog_model->get_all_catalog();
         $arr['catalog'] = $result;
         $this->load->view("editCatalog",$arr);
     }
@@ -43,6 +43,16 @@ class Catalog extends CI_Controller
         }else{
             echo "<script>alert('error')</script>";
             echo "<script>location='".site_url('Catalog/add_catalog')."'</script>";
+        }
+    }
+    public  function del_catalog(){
+        $cid = $this->input->get('cid');
+        $rs = $this->Catalog_model->delete_catalog($cid);
+        if($rs){
+            redirect('Catalog/add_catalog');
+        }else{
+            echo "<script>alert('错误')</script>";
+            echo "<script>location='".site_url('Catalog/add_catalog')."'</script>>";
         }
     }
 }
