@@ -42,7 +42,7 @@
                 }else{
                     ?>
                     <?php echo $this->session->uname?>[ <a href="User/unlogin">退出</a> ]
-                    <a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+                    <a href="#" class="msgbox" title="进入我的留言箱">你有<em><?php echo $message?></em>新留言</a>
                     </span>
               <?php
           }
@@ -64,7 +64,7 @@
     <div id="lnks">
 		<strong>Johnny的博客</strong>
 		<div>
-			<a href="index.htm">TA的博客列表</a>&nbsp;|
+			<a href="Blog/index">TA的博客列表</a>&nbsp;|
 			<a href="javascript:sendmsg(154693)">发送留言</a>
 </span>
 		</div>
@@ -171,10 +171,15 @@
 
 </div>
 <div class="BlogMenu"><div class="RecentBlogs SpaceModule">
-	<strong>最新博文</strong><ul>
-    		<li><a href="#">测试文章2</a></li>
-				<li><a href="#">测试文章1</a></li>
-			<li class="more"><a href="index.htm">查看所有博文»</a></li>
+    <strong></strong><ul>
+        <?php
+        foreach ($result as $value){
+
+            ?>
+            <li><a href="#"><?php echo $value->TITLE?></a></li>
+            <!--				<li><a href="#">测试文章1</a></li>-->
+        <?php }?>
+        <li class="more"><a href="Blog/index">查看所有博文»</a></li>
     </ul>
 </div>
 
