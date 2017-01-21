@@ -48,7 +48,7 @@
             当前访客身份：
             <?php echo $name?>[ <a href="User/unlogin">退出</a> ]
             <span id="OSC_Notification">
-			<a href="inbox.htm" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="inbox.php" class="msgbox" title="进入我的留言箱">你有<em><?php echo $message?></em>新留言</a>
 																				</span>
         </div>
         <div id="SearchBar">
@@ -70,7 +70,7 @@
             <div id="lnks">
                 <strong><?php echo $name ?>的博客</strong>
                 <div><a href="index_logined.php">TA的博客列表</a>&nbsp;|
-                    <a href="sendMsg.htm">发送留言</a></div>
+                    <a href="Message/send_message/<?php echo $_SESSION['uid']?>">发送留言</a></div>
             </div>
             <div class="clear"></div>
         </div>
@@ -137,8 +137,8 @@
                 <strong>博客管理</strong>
                 <ul class="LinkLine">
                     <li><a href="Blog/addblog">发表博客</a></li>
-                    <li><a href="blogCatalogs.php">博客分类管理</a></li>
-                    <li><a href="blogs.htm">文章管理</a></li>
+                    <li><a href="Catalog/add_catalog">博客分类管理</a></li>
+                    <li><a href="Blog/blogs">文章管理</a></li>
                     <li><a href="blogComments.htm">网友评论管理</a></li>
                 </ul>
             </div>

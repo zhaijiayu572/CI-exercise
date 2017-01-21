@@ -44,7 +44,7 @@
             当前访客身份：
             游客 [ <a href="index.php/User/login">登录</a> | <a href="index.php/User/reg">注册</a> ]
             <span id="OSC_Notification">
-			<a href="inbox.htm" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="inbox.php" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 					</span>
         </div>
         <div id="SearchBar">
@@ -67,7 +67,7 @@
                 <strong><?php echo $name?>的博客</strong>
                 <div>
                     <a href="#">TA的博客列表</a>&nbsp;|
-                    <a href="sendMsg.htm">发送留言</a>
+                    <a href="sendMsg.php">发送留言</a>
                     </span>
                 </div>
             </div>
