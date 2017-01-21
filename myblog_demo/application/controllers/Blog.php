@@ -13,10 +13,36 @@ class Blog extends CI_Controller
             $uid = $this->session->uid;
             $result = $this->Blog_model->get_myblog($uid);
             $arr['result'] = $result;
+            $this->load->model('Message_model');
+            $message = $this->Message_model->show_unread_num($uid);
+            $arr['message'] = $message;
+            $arr['writer'] = $uid;
             $this->load->view('index_logined',$arr);
         }else{
             $this->load->view('index');
         }
+    }
+    public function blogs(){
+        $uid = $this->session->uid;
+        $arr['number'] = $this->Blog_model->all_blog($uid);
+        $arr['result'] = $this->Blog_model->get_myblog($uid);
+        $this->load->view('blogs',$arr);
+    }
+    public function del_blog(){
+        $aBid = $this->input->post('bid');
+        $flag = true;
+        for($i=0;$i<count($aBid);$i++){
+            $result = $this->Blog_model->del_blog($aBid[$i]);
+            if(!$result){
+                $flag = false;
+            }
+        }
+        if($flag){
+            echo 'success';
+        }else{
+            echo "error";
+        }
+
     }
     public function addblog(){
         $this->load->model("Catalog_model");
@@ -36,7 +62,7 @@ class Blog extends CI_Controller
             redirect('Blog/index');
         }else{
             echo "<script>alert('错误')</script>";
-            echo "<script>location='".site_url('Blog/index')."'</script>>";
+            echo "<script>location='".site_url('Blog/index')."'</script>";
         }
     }
 }

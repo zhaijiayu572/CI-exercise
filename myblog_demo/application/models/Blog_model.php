@@ -24,4 +24,15 @@ class Blog_model extends CI_Model
         $query = $this->db->insert('t_blogs',$arr);
         return $query;
     }
+    public function all_blog($uid){
+        $this->db->select('*');
+        $this->db->from("t_blogs");
+        $this->db->where('WRITER',$uid);
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+    public  function del_blog($bid){
+       $query = $this->db->delete('t_blogs',array('BLOG_ID'=>$bid));
+       return $query;
+    }
 }
