@@ -91,7 +91,7 @@
 		<div class="outline">
 			<a href="#" target="user"><?php echo $value->NAME?></a>
 			发送于 (<?php echo $value->ADD_TIME?>)
-			&nbsp;&nbsp;<a href="javascript:delete_in_msg(186720)">删除</a>
+			&nbsp;&nbsp;<a href="Message/del_msg/<?php echo $value->MSG_ID?>">删除</a>
 		</div>
 		<div class="content">
 		  <div class="c"><?php echo $value->CONTENT?></div></div>
