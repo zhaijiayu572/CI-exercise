@@ -40,7 +40,7 @@ class User extends CI_Controller
         if($result){
             $this->session->uid = $result->USER_ID;
             $this->session->uname = $result->NAME;
-            redirect('Blog/index');
+            redirect('Blog/index/'.$result->USER_ID);
         }else{
             echo '登录失败';
         }
