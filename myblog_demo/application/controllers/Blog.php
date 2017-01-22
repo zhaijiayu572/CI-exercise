@@ -10,11 +10,14 @@ class Blog extends CI_Controller
 
     public function index(){
         if(isset($_SESSION['uid'])){
-            $uid = $this->session->uid;
+            $uid = $this->uri->segment(3);
             $result = $this->Blog_model->get_myblog($uid);
             $arr['result'] = $result;
             $this->load->model('Message_model');
             $message = $this->Message_model->show_unread_num($uid);
+            $this->load->model('Catalog_model');
+            $catalog = $this->Catalog_model->get_all_catalog();
+            $arr['catalog'] = $catalog;
             $arr['message'] = $message;
             $arr['writer'] = $uid;
             $this->load->view('index_logined',$arr);
@@ -57,6 +60,8 @@ class Blog extends CI_Controller
         $type = $this->input->post('type');
         $type==1?$type="原创":$type="转帖";
         $uid = $this->session->uid;
+        $this->load->model('Catalog_model');
+        $this->Catalog_model->use_catalog($catalog);
         $rs = $this->Blog_model->add_blog($catalog,$uid,$title,$content,$type);
         if($rs){
             redirect('Blog/index');
@@ -64,5 +69,17 @@ class Blog extends CI_Controller
             echo "<script>alert('错误')</script>";
             echo "<script>location='".site_url('Blog/index')."'</script>";
         }
+    }
+    public function viewPost_logined(){
+        $bid = $this->uri->segment(3);
+        $uid = $this->session->uid;
+        $this->load->model('Message_model');
+        $this->Blog_model->update_click($bid);
+        $message = $this->Message_model->show_unread_num($uid);
+        $arr['message'] = $message;
+
+        $rs = $this->Blog_model->get_blog($bid);
+        $arr['rs'] = $rs;
+        $this->load->view('viewPost_logined',$arr);
     }
 }

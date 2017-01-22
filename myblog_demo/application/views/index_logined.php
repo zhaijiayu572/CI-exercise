@@ -69,7 +69,7 @@
             </div>
             <div id="lnks">
                 <strong><?php echo $name ?>的博客</strong>
-                <div><a href="index_logined.php">TA的博客列表</a>&nbsp;|
+                <div><a href="Blog/index">TA的博客列表</a>&nbsp;|
                     <a href="Message/send_message/<?php echo $_SESSION['uid']?>">发送留言</a></div>
             </div>
             <div class="clear"></div>
@@ -81,7 +81,7 @@
                     ?>
                     <li class='Blog' id='blog_<?php echo $value->BLOG_ID?>'>
 
-                        <h2 class='BlogAccess_true BlogTop_0'><a href="viewPost_comment.htm"><?php echo $value->TITLE?></a></h2>
+                        <h2 class='BlogAccess_true BlogTop_0'><a href="Blog/viewPost_logined/<?php echo $value->BLOG_ID?>"><?php echo $value->TITLE?></a></h2>
 
                         <div class='outline'>
 
@@ -145,9 +145,11 @@
             <div class="catalogs SpaceModule">
                 <strong>博客分类</strong>
                 <ul class="LinkLine">
-                    <li><a href="#">工作日志(3)</a></li>
-                    <li><a href="#">日常记录(0)</a></li>
-                    <li><a href="#">转贴的文章(0)</a></li>
+                    <?php foreach ($catalog as $value){?>
+                    <li><a href="#"><?php echo $value->NAME?>(<?php echo $value->BLOG_COUNT?>)</a></li>
+<!--                    <li><a href="#">日常记录(0)</a></li>-->
+<!--                    <li><a href="#">转贴的文章(0)</a></li>-->
+                    <?php }?>
                 </ul>
             </div>
             <div class="comments SpaceModule">
