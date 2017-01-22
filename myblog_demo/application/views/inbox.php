@@ -54,9 +54,9 @@
     	<span id="AdminTitle">我的留言箱</span>
     </div>
     <div id="AdminMenu"><ul>
-	<li class="caption">个人信息管理		
+	<li class="caption">个人信息管理
 		<ol>
-			<li class="current"><a href="inbox.php">站内留言(0/1)</a></li>
+			<li class="current"><a href="Message/inbox">站内留言(0/1)</a></li>
 			<li><a href="profile.htm">编辑个人资料</a></li>
 			<li><a href="chpwd.htm">修改登录密码</a></li>
 			<li><a href="userSettings.htm">网页个性设置</a></li>
@@ -64,37 +64,42 @@
 	</li>		
 </ul>
 <ul>
-	<li class="caption">博客管理	
-		<ol>
-			<li><a href="newBlog.htm">发表博客</a></li>
-			<li><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li><a href="blogs.htm">文章管理</a></li>
-			<li><a href="blogComments.htm">博客评论管理</a></li>
-		</ol>
+	<li class="caption">博客管理
+        <ul class="LinkLine">
+            <li><a href="Blog/addblog">发表博客</a></li>
+            <li><a href="Catalog/add_catalog">博客分类管理</a></li>
+            <li><a href="Blog/blogs">文章管理</a></li>
+            <li><a href="blogComments.htm">网友评论管理</a></li>
+        </ul>
 	</li>
 </ul>
 </div>
     <div id="AdminContent">
 <ul class="tabnav"> 
-	<li class="tab1 current"><a href="inbox.php">所有留言<em>(1)</em></a></li>
-	<li class="tab4"><a href="outbox.htm">已发送留言<em>(0)</em></a></li>
+	<li class="tab1 current"><a href="Message/inbox">所有留言<em>(<?php echo $rnum?>)</em></a></li>
+	<li class="tab4"><a href="Message/outbox">已发送留言<em>(<?php echo $snum?>)</em></a></li>
     </ul>
 <div class="MsgList">
 <ul>
     <li id="msg_186720">
-	<span class="sender"><a href="#"><img src="images/12_50.jpg" alt="红薯" title="红薯" class="SmallPortrait" user="12" align="absmiddle"></a></span>
-	<span class="msg">
+
+	<?php
+        foreach ($rmsg as $value){
+    ?>
+    <span class="sender"><a href="#"><img src="images/12_50.jpg" alt="红薯" title="红薯" class="SmallPortrait" user="12" align="absmiddle"></a></span>
+    <span class="msg">
 		<div class="outline">
-			<a href="#" target="user">红薯</a>
-			发送于 昨天(23:00) (2011-06-17 23:00)				
+			<a href="#" target="user"><?php echo $value->NAME?></a>
+			发送于 (<?php echo $value->ADD_TIME?>)
 			&nbsp;&nbsp;<a href="javascript:delete_in_msg(186720)">删除</a>
 		</div>
 		<div class="content">
-		  <div class="c">您好，欢迎使用SYSIT Blog。</div></div>
+		  <div class="c"><?php echo $value->CONTENT?></div></div>
 		<div class="opts">
 			<a href="javascript:sendmsg(12,186720)">回复留言</a>
 					</div>
 	</span>
+        <?php }?>
 	<div class="clear"></div>
   </li>
   </ul>
