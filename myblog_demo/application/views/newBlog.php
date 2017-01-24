@@ -61,7 +61,7 @@
     <div id="OSC_Content">
         <div id="AdminScreen">
             <div id="AdminPath">
-                <a href="Blog/index">返回我的首页</a>&nbsp;»
+                <a href="Blog/index/<?php echo $this->session->uid?>">返回我的首页</a>&nbsp;»
                 <span id="AdminTitle">发表博客</span>
             </div>
             <div id="AdminMenu">
